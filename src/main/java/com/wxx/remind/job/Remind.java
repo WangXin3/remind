@@ -72,6 +72,22 @@ public class Remind {
     }
 
     /**
+     * 周末提醒
+     */
+    @Scheduled(cron = "0 45 17 ? * 6")
+    public void weekEndRemind() {
+        this.push("周五发送周报", "");
+    }
+
+    /**
+     * 月末提醒
+     */
+    @Scheduled(cron = "0 45 17 L * ?")
+    public void monthEndRemind() {
+        this.push("月末发送月报", "");
+    }
+
+    /**
      * 推送消息
      * @param text 消息标题，最长为256，必填。
      * @param desp 消息内容，最长64Kb，可空，支持MarkDown。
